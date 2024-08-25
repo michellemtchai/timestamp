@@ -18,6 +18,8 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+const routes = require('./routes');
+app.use('/api', routes);
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
@@ -27,6 +29,7 @@ app.get("/api/hello", function (req, res) {
 
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+var port = process.env.PORT || 3000;
+const listener = app.listen(port, () => {
+  console.log('Your app is listening on port ' + listener.address().port)
+})
